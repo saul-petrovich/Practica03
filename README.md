@@ -42,3 +42,38 @@ Java 21
 **String Pool:** zona de memoria donde se guarda una sola copia de cada literal para reutilizarla. Es seguro compartirlos porque los String son inmutables, new String y las concatenaciones hechas en ejecucion crean objetos fuera del pool.
 - **== vs equals():** == compara referencias (si son el mismo objeto); equals() compara el contenido (si el texto es igual). Por eso a == d es false pero a.equals(d) es true.
 - **concat():** no modifica el String original, porque es inmutable; devuelve un String nuevo. Por eso a sigue valiendo Java y b pasa a valer Java 21 solo porque se reasigno.
+
+
+## 02 Operaciones e indices en StringBuilder
+
+```java
+StringBuilder sb = new StringBuilder("ABCDE");
+sb.delete(1, 4);
+sb.insert(1, "xyz");
+sb.reverse();
+sb.replace(1, 4, "-");
+System.out.println(sb);
+System.out.println(sb.length());
+System.out.println(sb.capacity());
+```
+
+### Contenido tras cada modificacion
+
+- new StringBuilder("ABCDE") ? ABCDE
+- sb.delete(1, 4) ? AE
+- sb.insert(1, "xyz") ? AxyzE
+- sb.reverse() ? EzyxA
+- sb.replace(1, 4, "-") ? E-
+
+### Salida
+
+```
+E-A
+3
+21
+```
+
+### Explicacion
+
+- **delete(1, 4):** el rango es [1, 4), o sea incluye la posición 1 y excluye la 4. Borra las posiciones 1, 2 y 3, es decir 3 caracteres (4 - 1).
+- **length() vs capacity():** length() es el número de caracteres que tiene ahora (3). capacity() es el espacio reservado antes de tener que crecer (21 = 5 + 16 de la creación).
