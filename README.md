@@ -23,6 +23,17 @@ public class Ejercicio1 {
     }
 }
 ```
+
+### Qué imprime
+
+```
+false
+true
+false
+true
+Java
+Java 21
+```
 - a y c apuntan al mismo objeto del String Pool. c es "Ja" + "va", dos literales que el compilador une antes de ejecutar
 - b apunta a un objeto distinto, creado con new String("Java") fuera del pool. Tiene el mismo texto que a, pero no es el mismo objeto
 - d apunta a un objeto distinto, creado en tiempo de ejecución con d += "va". También tiene el texto "Java", pero fuera del pool
