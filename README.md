@@ -1,8 +1,7 @@
-# Pr ctica03
+# Practica03
 
-**Alumno:** Petrovich Tovar Diego Saul
 
-**Materia:** Introducci¢n a Ciencias de la Computaci¢n
+**Materia:** Introduccion a Ciencias de la Computacion
 
 ## 01 Referencias e inmutabilidad de String
 
@@ -25,6 +24,6 @@ public class Ejercicio1 {
 }
 ```
 
-**String Pool:** zona de memoria de la JVM donde se guarda una sola copia de cada literal para reutilizarla. Es seguro compartirlos porque los `String` son inmutables. Por eso `a` y `c` son el mismo objeto. `new String(...)` y las concatenaciones hechas en ejecuci¢n crean objetos fuera del pool.
-- **`==` vs `equals()`:** `==` compara referencias (si son el mismo objeto); `equals()` compara el contenido (si el texto es igual). Por eso `a == d` es `false` pero `a.equals(d)` es `true`.
-- **`concat()`:** no modifica el `String` original, porque es inmutable; devuelve un `String` nuevo. Por eso `a` sigue valiendo `"Java"` y `b` pasa a valer `"Java 21"` solo porque se reasign¢.
+**String Pool:** zona de memoria de la JVM donde se guarda una sola copia de cada literal para reutilizarla. Es seguro compartirlos porque los String son inmutables. Por eso a y c son el mismo objeto. new String y las concatenaciones hechas en ejecuci¢n crean objetos fuera del pool.
+- **== vs equals():** == compara referencias (si son el mismo objeto); equals() compara el contenido (si el texto es igual). Por eso a == d es false pero a.equals(d) es true.
+- **concat():** no modifica el String original, porque es inmutable; devuelve un String nuevo. Por eso a sigue valiendo Java y b pasa a valer Java 21 solo porque se reasigno.
