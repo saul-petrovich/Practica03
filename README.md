@@ -77,3 +77,87 @@ E-A
 
 - **delete(1, 4):** el rango es [1, 4), o sea incluye la posición 1 y excluye la 4, borra las posiciones 1, 2 y 3, es decir 3 caracteres (4 - 1).
 - **length() vs capacity():** length() es el número de caracteres que tiene ahora (3). capacity() es el espacio reservado antes de tener que crecer (21 = 5 + 16 de la creación).
+
+
+## 03 Referencias compartidas
+
+### Codigo
+
+```java
+StringBuilder a = new StringBuilder("Hola");
+StringBuilder b = a;
+StringBuilder c = new StringBuilder("Hola");
+
+a.append(" mundo");
+b.delete(0, 5);
+
+System.out.println(a);
+System.out.println(b);
+System.out.println(c);
+System.out.println(a == b);
+System.out.println(a.equals(b));
+System.out.println(a.equals(c));
+```
+
+### Salidas
+
+```
+mundo
+mundo
+Hola
+true
+true
+false
+```
+
+### Como afecta cada modificacion
+
+- b = a=b copia la referencia de a, asi que ambas apuntan al mismo objeto .
+- c = new StringBuilder("Hola"): crea un objeto distinto.
+- a.append: "mundo" modifica el objeto de a "Hola mundo" b tambien lo ve porque apunta al mismo objeto.
+- b.delete:(0, 5): borra "Hola " del objeto de b, que queda como "mundo", a tambien lo ve.
+- c nunca cambia, porque ninguna operacion se hizo a traves de c.
+
+### Esquema
+
+Estado inicial (tras las tres primeras lineas):
+
+```
+  Variables                       Objetos
+
+ -----
+   a ------------>
+ -----                     ------------------
+ -----                      StringBuilder #1  
+   b  ---------->             "Hola"       
+ -----                     ------------------
+
+ -----                    ------------------
+   c  ------------>         StringBuilder #2 
+ -----                          "Hola"       
+                          ------------------
+```
+
+Estado final:
+
+```
+  Variables                     Objetos
+ 
+
+ -----
+   a  ----------->
+ -----
+                           ------------------
+ -----                        StringBuilder #1        
+   b  ----------->                "mundo"      
+ -----                     ------------------
+
+
+
+
+
+ -----                    ------------------
+   c  ---------->          StringBuilder #2 
+ -----                         "Hola"       
+                          ------------------
+```
