@@ -411,3 +411,102 @@ public class EditorTexto {
 
     private boolean valido(int inicio, int fin) {
         return inicio >=
+
+
+
+# Tarea 03.2
+
+## Ejercicio 11: Recorrer un arreglo de numeros
+
+```java
+public class Ejercicio11 {
+
+    public static void main(String[] args) {
+        int[] numeros = {8, 3, 10, 5, 4};
+
+        int suma = 0;
+        int mayor = numeros[0];
+
+        for (int i = 0; i < numeros.length; i++) {
+            suma = suma + numeros[i];
+
+            if (numeros[i] > mayor) {
+                mayor = numeros[i];
+            }
+        }
+
+        double promedio = suma / 5.0;
+
+        System.out.println("suma = " + suma);
+        System.out.println("promedio = " + promedio);
+        System.out.println("mayor = " + mayor);
+    }
+}
+```
+
+Salida:
+
+```
+suma = 30
+promedio = 6.0
+mayor = 10
+```
+
+## Ejercicio 12: Suma de cadenas binarias
+
+```java
+public class Ejercicio12 {
+
+    public String addBinary(String a, String b) {
+        int largo = a.length();
+        if (b.length() > largo) {
+            largo = b.length();
+        }
+
+        int[] resultado = new int[largo + 1];
+        int i = a.length() - 1;
+        int j = b.length() - 1;
+        int acarreo = 0;
+
+        for (int k = largo; k >= 0; k--) {
+            int suma = acarreo;
+
+            if (i >= 0) {
+                suma = suma + (a.charAt(i) - '0');
+                i--;
+            }
+            if (j >= 0) {
+                suma = suma + (b.charAt(j) - '0');
+                j--;
+            }
+
+            resultado[k] = suma % 2;
+            acarreo = suma / 2;
+        }
+
+        int inicio = 1;
+        if (resultado[0] == 1) {
+            inicio = 0;
+        }
+
+        String texto = "";
+        for (int p = inicio; p < resultado.length; p++) {
+            texto = texto + resultado[p];
+        }
+        return texto;
+    }
+
+    public static void main(String[] args) {
+        Ejercicio12 e = new Ejercicio12();
+        System.out.println(e.addBinary("11", "1"));
+        System.out.println(e.addBinary("1010", "1011"));
+    }
+}
+```
+
+Salida:
+
+```
+100
+10101
+```
