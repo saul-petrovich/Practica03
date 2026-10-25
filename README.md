@@ -227,3 +227,31 @@ private static boolean esSignificativo(char c) {
 }
 ```
 
+
+## Ejercicio 6
+
+```java
+public static String eliminarDuplicados(String texto) {
+    StringBuilder resultado = new StringBuilder();
+    for (int i = 0; i < texto.length(); i++) {
+        char actual = texto.charAt(i);
+        if (!contiene(resultado, actual)) resultado.append(actual);
+    }
+    return resultado.toString();
+}
+
+private static boolean contiene(StringBuilder texto, char buscado) {
+    for (int i = 0; i < texto.length(); i++) {
+        if (texto.charAt(i) == buscado) return true;
+    }
+    return false;
+}
+```
+
+**¨C¢mo detecto los caracteres que ya aparecieron?**
+
+Uso el propio `StringBuilder` `resultado` como memoria. Ah¡ s¢lo hay caracteres que ya aparecieron, sin repetir. Antes de agregar un car cter, el m‚todo `contiene` lo busca en `resultado`, letra por letra. Si lo encuentra, ya hab¡a aparecido y no lo agrego. Si no lo encuentra, es su primera aparici¢n y lo agrego al final, as¡ se respeta el orden original.
+
+**¨Cu ntos recorridos realiza?**
+
+Hay un recorrido principal del texto original, de izquierda a derecha, una sola vez. Dentro de ese recorrido, por cada car cter se hace otro recorrido corto sobre `resultado` para buscarlo. Ese recorrido corto nunca es m s largo que el n£mero de caracteres distintos que ya se guardaron.
