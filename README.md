@@ -410,7 +410,54 @@ public class EditorTexto {
     }
 
     private boolean valido(int inicio, int fin) {
-        return inicio >=
+        return inicio >= 0 && inicio <= fin && fin <= contenido.length();
+    }
+
+    private void guardarSiCambio(StringBuilder nuevo) {
+        if (nuevo.toString().equals(contenido.toString())) return;
+        anterior = contenido;
+        contenido = nuevo;
+    }
+}
+```
+
+## PruebaEditor.java
+
+```java
+public class PruebaEditor {
+
+    public static void main(String[] args) {
+        EditorTexto editor = new EditorTexto();
+        editor.escribir("Hola mundo");
+        editor.insertar(5, "gran ");
+        editor.eliminar(0, 5);
+        System.out.println(editor.obtenerTexto());
+        editor.deshacer();
+        System.out.println(editor.obtenerTexto());
+    }
+}
+```
+
+Salida:
+
+```
+gran mundo
+Hola gran mundo
+```
+
+## Preguntas
+
+**1. Por que los atributos del editor deben ser privados?**
+Por encapsulamiento. Si fueran publicos, cualquier clase podria cambiar `contenido` o `anterior` directamente, saltandose la validacion de indices y rompiendo `deshacer()`. Siendo privados, solo se modifican con los metodos de la clase, que mantienen el editor en un estado valido.
+
+**2. Que diferencia hay entre un metodo `public` y uno `private`?**
+Un metodo `public` puede llamarse desde cualquier clase. Uno `private` solo desde dentro de la propia clase.
+
+**3. Si quitas `public` de un metodo, que acceso tiene y puede llamarlo `PruebaEditor` desde el mismo paquete?**
+Queda con acceso de paquete. `PruebaEditor` si puede llamarlo, porque esta en el mismo paquete que `EditorTexto`.
+
+**4. En que se diferencia el acceso de paquete de `protected`?**
+El acceso de paquete permite el uso solo a las clases del mismo paquete. `protected` permite eso y ademas el acceso desde las subclases, aunque esten en otro paquete.
 
 
 
