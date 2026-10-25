@@ -291,3 +291,32 @@ private static boolean coincide(String texto, String buscar, int inicio) {
 Si `buscar` est  vac¡o, el m‚todo devuelve el texto sin cambios (`if (buscar.length() == 0) return texto;`). Lo hice as¡ porque una cadena vac¡a "aparece" en todas las posiciones del texto, as¡ que reemplazarla no tiene sentido y adem s har¡a que el ciclo no avanzara de forma £til.
 
 
+
+
+## Ejercicio 8
+
+```java
+public static String invertirPalabras(String texto) {
+    StringBuilder resultado = new StringBuilder();
+    int derecha = texto.length() - 1;
+    int izquierda = 0;
+
+    while (derecha >= 0) {
+        int fin = derecha;
+        while (derecha >= 0 && texto.charAt(derecha) != ' ') derecha--;
+        for (int k = derecha + 1; k <= fin; k++) {
+            resultado.append(texto.charAt(k));
+        }
+
+        while (izquierda < texto.length() && texto.charAt(izquierda) != ' ') izquierda++;
+
+        while (izquierda < texto.length() && texto.charAt(izquierda) == ' ') {
+            resultado.append(' ');
+            izquierda++;
+        }
+
+        while (derecha >= 0 && texto.charAt(derecha) == ' ') derecha--;
+    }
+    return resultado.toString();
+}
+```
