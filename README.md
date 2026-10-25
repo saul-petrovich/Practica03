@@ -167,22 +167,63 @@ Estado final:
 
 ```java
 public static String comprimir(String texto) {
-    if (texto.length() == 0) return "";
     StringBuilder resultado = new StringBuilder();
-    char grupo = texto.charAt(0);
-    int repeticiones = 1;
 
-    for (int i = 1; i < texto.length(); i++) {
+    int i = 0;
+    while (i < texto.length()) {
         char actual = texto.charAt(i);
-        if (actual == grupo) {
-            repeticiones++;
-        } else {
-            resultado.append(grupo).append(repeticiones);
-            grupo = actual;
-            repeticiones = 1;
+        int contador = 1;
+        int j = i + 1;
+
+        while (j < texto.length() && texto.charAt(j) == actual) {
+            contador++;
+            j++;
         }
+
+        resultado.append(actual);
+        resultado.append(contador);
+        i = j;
     }
-    resultado.append(grupo).append(repeticiones);
+
     return resultado.toString();
 }
 ```
+
+
+## Ejercicio 5
+
+```java
+public static boolean esPalindromo(String texto) {
+    int izquierda = 0;
+    int derecha = texto.length() - 1;
+    while (izquierda < derecha) {
+        char a = normalizar(texto.charAt(izquierda));
+        char b = normalizar(texto.charAt(derecha));
+        if (!esSignificativo(a)) {
+            izquierda++;
+        } else if (!esSignificativo(b)) {
+            derecha--;
+        } else if (a != b) {
+            return false;
+        } else {
+            izquierda++;
+            derecha--;
+        }
+    }
+    return true;
+}
+
+private static char normalizar(char c) {
+    String origen  = "ABCDEFGHIJKLMNOPQRSTUVWXYZµÖàé¥ ‚¡¢£";
+    String destino = "abcdefghijklmnopqrstuvwxyzaeiou¤aeiou";
+    int posicion = origen.indexOf(c);
+    return posicion < 0 ? c : destino.charAt(posicion);
+}
+
+private static boolean esSignificativo(char c) {
+    return (c >= 'a' && c <= 'z')
+            || (c >= '0' && c <= '9')
+            || c == '¤';
+}
+```
+
