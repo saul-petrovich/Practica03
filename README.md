@@ -248,13 +248,13 @@ private static boolean contiene(StringBuilder texto, char buscado) {
 }
 ```
 
-**¨C¢mo detecto los caracteres que ya aparecieron?**
+**¨Como detecto los caracteres que ya aparecieron?**
 
-Uso el propio `StringBuilder` `resultado` como memoria. Ah¡ s¢lo hay caracteres que ya aparecieron, sin repetir. Antes de agregar un car cter, el m‚todo `contiene` lo busca en `resultado`, letra por letra. Si lo encuentra, ya hab¡a aparecido y no lo agrego. Si no lo encuentra, es su primera aparici¢n y lo agrego al final, as¡ se respeta el orden original.
+Uso el propio `StringBuilder` `resultado` como memoria. Ahi solo hay caracteres que ya aparecieron, sin repetir. Antes de agregar un caracter, el metodo `contiene` lo busca en `resultado`, letra por letra. Si lo encuentra, ya habia aparecido y no lo agrego. Si no lo encuentra, es su primera aparicion y lo agrego al final, asi se respeta el orden original.
 
-**¨Cu ntos recorridos realiza?**
+**¨Cuantos recorridos realiza?**
 
-Hay un recorrido principal del texto original, de izquierda a derecha, una sola vez. Dentro de ese recorrido, por cada car cter se hace otro recorrido corto sobre `resultado` para buscarlo. Ese recorrido corto nunca es m s largo que el n£mero de caracteres distintos que ya se guardaron.
+Hay un recorrido principal del texto original, de izquierda a derecha, una sola vez. Dentro de ese recorrido, por cada caracter se hace otro recorrido corto sobre `resultado` para buscarlo. Ese recorrido corto nunca es mas largo que el numero de caracteres distintos que ya se guardaron.
 
 
 
@@ -286,9 +286,9 @@ private static boolean coincide(String texto, String buscar, int inicio) {
 }
 ```
 
-**¨C¢mo maneja el m‚todo el caso en que `buscar` est  vac¡o?**
+**¨Como maneja el metodo el caso en que `buscar` est  vacio?**
 
-Si `buscar` est  vac¡o, el m‚todo devuelve el texto sin cambios (`if (buscar.length() == 0) return texto;`). Lo hice as¡ porque una cadena vac¡a "aparece" en todas las posiciones del texto, as¡ que reemplazarla no tiene sentido y adem s har¡a que el ciclo no avanzara de forma £til.
+Si `buscar` est  vacio, el metodo devuelve el texto sin cambios (`if (buscar.length() == 0) return texto;`). Lo hice asi porque una cadena vacia "aparece" en todas las posiciones del texto, asi que reemplazarla no tiene sentido y ademas haria que el ciclo no avanzara de forma util.
 
 
 
