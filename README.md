@@ -255,3 +255,39 @@ Uso el propio `StringBuilder` `resultado` como memoria. Ah¡ s¢lo hay caracteres 
 **¨Cu ntos recorridos realiza?**
 
 Hay un recorrido principal del texto original, de izquierda a derecha, una sola vez. Dentro de ese recorrido, por cada car cter se hace otro recorrido corto sobre `resultado` para buscarlo. Ese recorrido corto nunca es m s largo que el n£mero de caracteres distintos que ya se guardaron.
+
+
+
+## Ejercicio 7
+
+```java
+public static String reemplazar(String texto, String buscar, String reemplazo) {
+    if (buscar.length() == 0) return texto;
+    StringBuilder resultado = new StringBuilder();
+    int i = 0;
+    while (i < texto.length()) {
+        if (coincide(texto, buscar, i)) {
+            resultado.append(reemplazo);
+            i += buscar.length();
+        } else {
+            resultado.append(texto.charAt(i));
+            i++;
+        }
+    }
+    return resultado.toString();
+}
+
+private static boolean coincide(String texto, String buscar, int inicio) {
+    if (buscar.length() > texto.length() - inicio) return false;
+    for (int j = 0; j < buscar.length(); j++) {
+        if (texto.charAt(inicio + j) != buscar.charAt(j)) return false;
+    }
+    return true;
+}
+```
+
+**¨C¢mo maneja el m‚todo el caso en que `buscar` est  vac¡o?**
+
+Si `buscar` est  vac¡o, el m‚todo devuelve el texto sin cambios (`if (buscar.length() == 0) return texto;`). Lo hice as¡ porque una cadena vac¡a "aparece" en todas las posiciones del texto, as¡ que reemplazarla no tiene sentido y adem s har¡a que el ciclo no avanzara de forma £til.
+
+
